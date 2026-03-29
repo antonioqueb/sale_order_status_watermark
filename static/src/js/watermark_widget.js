@@ -30,10 +30,11 @@ patch(FormController.prototype, {
         // Clean previous watermark classes and elements
         formSheet.classList.remove(
             "o_sale_order_cancelled_watermark",
-            "o_sale_order_confirmed_watermark"
+            "o_sale_order_confirmed_watermark",
+            "o_sale_order_draft_watermark"
         );
         formSheet.querySelectorAll(
-            ".o_sale_confirmed_badge, .o_sale_cancelled_banner, .o_sale_confirmed_banner"
+            ".o_sale_confirmed_badge, .o_sale_cancelled_banner, .o_sale_confirmed_banner, .o_sale_draft_banner, .o_sale_draft_badge"
         ).forEach(el => el.remove());
 
         const record = this.model?.root;
@@ -44,7 +45,6 @@ patch(FormController.prototype, {
         if (state === "cancel") {
             formSheet.classList.add("o_sale_order_cancelled_watermark");
 
-            // Add cancelled banner at top of sheet
             if (!formSheet.querySelector(".o_sale_cancelled_banner")) {
                 const banner = document.createElement("div");
                 banner.className = "o_sale_cancelled_banner";
@@ -57,7 +57,6 @@ patch(FormController.prototype, {
         } else if (state === "sale") {
             formSheet.classList.add("o_sale_order_confirmed_watermark");
 
-            // Add confirmed floating badge
             if (!formSheet.querySelector(".o_sale_confirmed_badge")) {
                 const badge = document.createElement("div");
                 badge.className = "o_sale_confirmed_badge";
@@ -68,13 +67,34 @@ patch(FormController.prototype, {
                 formSheet.appendChild(badge);
             }
 
-            // Add confirmed banner at top of sheet
             if (!formSheet.querySelector(".o_sale_confirmed_banner")) {
                 const banner = document.createElement("div");
                 banner.className = "o_sale_confirmed_banner";
                 banner.innerHTML = `
                     <span class="o_confirmed_banner_icon">✓</span>
                     <span>Orden de venta confirmada y validada</span>
+                `;
+                formSheet.insertBefore(banner, formSheet.firstChild);
+            }
+        } else if (state === "draft" || state === "sent") {
+            formSheet.classList.add("o_sale_order_draft_watermark");
+
+            if (!formSheet.querySelector(".o_sale_draft_badge")) {
+                const badge = document.createElement("div");
+                badge.className = "o_sale_draft_badge";
+                badge.innerHTML = `
+                    <span class="o_draft_icon">✎</span>
+                    <span>Cotización</span>
+                `;
+                formSheet.appendChild(badge);
+            }
+
+            if (!formSheet.querySelector(".o_sale_draft_banner")) {
+                const banner = document.createElement("div");
+                banner.className = "o_sale_draft_banner";
+                banner.innerHTML = `
+                    <span class="o_draft_banner_icon">✎</span>
+                    <span>Cotización — pendiente de confirmación</span>
                 `;
                 formSheet.insertBefore(banner, formSheet.firstChild);
             }
