@@ -15,46 +15,34 @@ const STATUS_CONFIG = {
     sale: {
         sheetClass: "o_sale_order_confirmed_watermark",
         bannerClass: "is-confirmed",
-        badgeClass: "is-confirmed",
         icon: "✓",
-        eyebrow: "Estado comercial",
+        eyebrow: "PREPARACIÓN COMERCIAL",
         title: "Orden confirmada",
         subtitle: "La orden ya fue validada y forma parte del flujo operativo.",
-        badge: "Confirmada",
-        side: "ACTIVA",
     },
     draft: {
         sheetClass: "o_sale_order_draft_watermark",
         bannerClass: "is-draft",
-        badgeClass: "is-draft",
         icon: "✎",
-        eyebrow: "Preparación comercial",
+        eyebrow: "PREPARACIÓN COMERCIAL",
         title: "Cotización en borrador",
         subtitle: "Aún puedes editar cantidades, precios, condiciones y productos.",
-        badge: "Borrador",
-        side: "EDITABLE",
     },
     sent: {
         sheetClass: "o_sale_order_sent_watermark",
         bannerClass: "is-sent",
-        badgeClass: "is-sent",
         icon: "↗",
-        eyebrow: "Seguimiento comercial",
+        eyebrow: "SEGUIMIENTO COMERCIAL",
         title: "Cotización enviada",
-        subtitle: "El documento fue enviado al cliente y está pendiente de respuesta.",
-        badge: "Enviada",
-        side: "PENDIENTE",
+        subtitle: "La cotización fue enviada al cliente y está pendiente de respuesta.",
     },
     cancel: {
         sheetClass: "o_sale_order_cancelled_watermark",
         bannerClass: "is-cancelled",
-        badgeClass: "is-cancelled",
         icon: "✕",
-        eyebrow: "Estado documental",
+        eyebrow: "ESTADO DOCUMENTAL",
         title: "Orden cancelada",
         subtitle: "Este registro fue cancelado y se conserva únicamente para trazabilidad.",
-        badge: "Cancelada",
-        side: "INACTIVA",
     },
 };
 
@@ -94,6 +82,12 @@ patch(FormController.prototype, {
         formSheet.classList.add("o_sale_order_status_ready", config.sheetClass);
         formSheet.dataset.saleOrderState = state;
 
+        // Barra lateral continua real
+        const rail = document.createElement("div");
+        rail.className = "o_sale_status_rail";
+        formSheet.appendChild(rail);
+
+        // Banner limpio, sin botones/pastillas laterales
         const banner = document.createElement("div");
         banner.className = `o_sale_status_banner ${config.bannerClass}`;
         banner.setAttribute("aria-hidden", "true");
@@ -106,25 +100,15 @@ patch(FormController.prototype, {
                 <div class="o_sale_status_banner__title">${config.title}</div>
                 <div class="o_sale_status_banner__subtitle">${config.subtitle}</div>
             </div>
-            <div class="o_sale_status_banner__side">${config.side}</div>
         `;
         formSheet.insertBefore(banner, formSheet.firstChild);
-
-        const badge = document.createElement("div");
-        badge.className = `o_sale_status_badge ${config.badgeClass}`;
-        badge.setAttribute("aria-hidden", "true");
-        badge.innerHTML = `
-            <span class="o_sale_status_badge__dot"></span>
-            <span class="o_sale_status_badge__label">${config.badge}</span>
-        `;
-        formSheet.appendChild(badge);
     },
 
     _clearSaleOrderStatusSkin(formSheet) {
         formSheet.classList.remove(...STATUS_CLASSES);
         delete formSheet.dataset.saleOrderState;
 
-        formSheet.querySelectorAll(".o_sale_status_banner, .o_sale_status_badge").forEach((el) => {
+        formSheet.querySelectorAll(".o_sale_status_banner, .o_sale_status_rail").forEach((el) => {
             el.remove();
         });
     },
