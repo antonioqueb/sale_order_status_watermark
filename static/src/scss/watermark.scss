@@ -8,9 +8,9 @@
 .o_sale_order_cancelled_watermark::before {
     content: "CANCELADO";
     position: absolute;
-    top: 140px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) rotate(-30deg);
+    transform: translate(-50%, -50%) rotate(-30deg);
     font-size: 105px;
     font-weight: 900;
     color: rgba(220, 53, 69, 0.10);
@@ -26,83 +26,22 @@
         -1px -1px 0 rgba(220, 53, 69, 0.03);
 }
 
-.o_sale_order_cancelled_watermark::after {
-    content: "";
-    position: absolute;
-    top: 8%;
-    left: 4%;
-    right: 4%;
-    bottom: 8%;
-    border: 3px solid rgba(220, 53, 69, 0.07);
-    border-radius: 10px;
-    pointer-events: none;
-    z-index: 1;
-}
+/* Sin ::after (sin borde interno) para cancelado */
 
-/* ===== DRAFT / QUOTATION WATERMARK ===== */
+/* ===== DRAFT / QUOTATION ===== */
 .o_sale_order_draft_watermark {
     position: relative;
 }
 
-.o_sale_order_draft_watermark::before {
-    content: "COTIZACIÓN";
-    position: absolute;
-    top: 140px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-30deg);
-    font-size: 100px;
-    font-weight: 900;
-    color: rgba(0, 123, 255, 0.08);
-    letter-spacing: 14px;
-    text-transform: uppercase;
-    pointer-events: none;
-    z-index: 1;
-    white-space: nowrap;
-    user-select: none;
-    -webkit-user-select: none;
-    text-shadow:
-        1px 1px 0 rgba(0, 123, 255, 0.03),
-        -1px -1px 0 rgba(0, 123, 255, 0.02);
-}
+/* Sin ::before (sin marca de agua) para draft */
+/* Sin ::after (sin borde interno) para draft */
 
-.o_sale_order_draft_watermark::after {
-    content: "";
-    position: absolute;
-    top: 8%;
-    left: 4%;
-    right: 4%;
-    bottom: 8%;
-    border: 2px dashed rgba(0, 123, 255, 0.06);
-    border-radius: 10px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* ===== CONFIRMED / SALE ORDER STATUS ===== */
+/* ===== CONFIRMED / SALE ORDER ===== */
 .o_sale_order_confirmed_watermark {
     position: relative;
 }
 
-.o_sale_order_confirmed_watermark::before {
-    content: "CONFIRMADA";
-    position: absolute;
-    top: 140px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-30deg);
-    font-size: 100px;
-    font-weight: 900;
-    color: rgba(40, 167, 69, 0.07);
-    letter-spacing: 14px;
-    text-transform: uppercase;
-    pointer-events: none;
-    z-index: 1;
-    white-space: nowrap;
-    user-select: none;
-    -webkit-user-select: none;
-    text-shadow:
-        1px 1px 0 rgba(40, 167, 69, 0.03),
-        -1px -1px 0 rgba(40, 167, 69, 0.02);
-}
+/* Sin ::before (sin marca de agua) para confirmada */
 
 .o_sale_order_confirmed_watermark::after {
     content: "";
@@ -237,39 +176,6 @@
 
 .o_sale_order_draft_watermark .o_form_sheet {
     border-left: 4px solid rgba(0, 123, 255, 0.35) !important;
-}
-
-/* ===== Cancelled banner bar ===== */
-.o_sale_cancelled_banner {
-    background: linear-gradient(
-        90deg,
-        rgba(220, 53, 69, 0.05) 0%,
-        rgba(220, 53, 69, 0.10) 50%,
-        rgba(220, 53, 69, 0.05) 100%
-    );
-    border: 1px solid rgba(220, 53, 69, 0.16);
-    border-left: 4px solid rgba(220, 53, 69, 0.55);
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: #721c24;
-    font-size: 14px;
-}
-
-.o_sale_cancelled_banner .o_cancelled_icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: rgba(220, 53, 69, 0.12);
-    border-radius: 50%;
-    color: #dc3545;
-    font-size: 14px;
 }
 
 /* ===== Confirmed banner bar ===== */

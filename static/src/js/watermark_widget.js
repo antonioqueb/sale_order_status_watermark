@@ -1,5 +1,4 @@
 /** @odoo-module **/
-
 import { FormController } from "@web/views/form/form_controller";
 import { patch } from "@web/core/utils/patch";
 import { onMounted, onPatched } from "@odoo/owl";
@@ -7,11 +6,9 @@ import { onMounted, onPatched } from "@odoo/owl";
 patch(FormController.prototype, {
     setup() {
         super.setup(...arguments);
-
         const applyWatermark = () => {
             this._applySaleOrderWatermark();
         };
-
         onMounted(applyWatermark);
         onPatched(applyWatermark);
     },
@@ -27,7 +24,6 @@ patch(FormController.prototype, {
         const formSheet = renderer.querySelector?.(".o_form_sheet");
         if (!formSheet) return;
 
-        // Clean previous watermark classes and elements
         formSheet.classList.remove(
             "o_sale_order_cancelled_watermark",
             "o_sale_order_confirmed_watermark",
@@ -44,16 +40,7 @@ patch(FormController.prototype, {
 
         if (state === "cancel") {
             formSheet.classList.add("o_sale_order_cancelled_watermark");
-
-            if (!formSheet.querySelector(".o_sale_cancelled_banner")) {
-                const banner = document.createElement("div");
-                banner.className = "o_sale_cancelled_banner";
-                banner.innerHTML = `
-                    <span class="o_cancelled_icon">✕</span>
-                    <span>Este documento ha sido CANCELADO</span>
-                `;
-                formSheet.insertBefore(banner, formSheet.firstChild);
-            }
+            // Solo marca de agua, sin banner
         } else if (state === "sale") {
             formSheet.classList.add("o_sale_order_confirmed_watermark");
 
