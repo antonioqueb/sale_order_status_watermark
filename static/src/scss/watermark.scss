@@ -1,245 +1,395 @@
-/* Sale Order Status Watermark Styles */
+/* ==========================================================================
+   SALE ORDER STATUS SKIN — PREMIUM 2026
+   ========================================================================== */
 
-/* ===== CANCELLED WATERMARK ===== */
-.o_sale_order_cancelled_watermark {
+.o_form_sheet.o_sale_order_status_ready {
     position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    transition:
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
 }
 
-.o_sale_order_cancelled_watermark::before {
-    content: "CANCELADO";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    font-size: 105px;
-    font-weight: 900;
-    color: rgba(220, 53, 69, 0.10);
-    letter-spacing: 14px;
-    text-transform: uppercase;
-    pointer-events: none;
-    z-index: 1;
-    white-space: nowrap;
-    user-select: none;
-    -webkit-user-select: none;
-    text-shadow:
-        1px 1px 0 rgba(220, 53, 69, 0.04),
-        -1px -1px 0 rgba(220, 53, 69, 0.03);
-}
-
-/* Sin ::after (sin borde interno) para cancelado */
-
-/* ===== DRAFT / QUOTATION ===== */
-.o_sale_order_draft_watermark {
-    position: relative;
-}
-
-/* Sin ::before (sin marca de agua) para draft */
-/* Sin ::after (sin borde interno) para draft */
-
-/* ===== CONFIRMED / SALE ORDER ===== */
-.o_sale_order_confirmed_watermark {
-    position: relative;
-}
-
-/* Sin ::before (sin marca de agua) para confirmada */
-
-.o_sale_order_confirmed_watermark::after {
+/* Accent top line */
+.o_form_sheet.o_sale_order_status_ready::after {
     content: "";
     position: absolute;
     top: 0;
-    left: 12px;
-    right: 12px;
+    left: 14px;
+    right: 14px;
     height: 4px;
-    background: linear-gradient(
-        90deg,
-        rgba(40, 167, 69, 0.00) 0%,
-        rgba(40, 167, 69, 0.45) 18%,
-        rgba(40, 167, 69, 0.90) 50%,
-        rgba(40, 167, 69, 0.45) 82%,
-        rgba(40, 167, 69, 0.00) 100%
-    );
+    border-radius: 0 0 999px 999px;
     pointer-events: none;
     z-index: 2;
-    border-radius: 0 0 4px 4px;
+    opacity: 0.98;
 }
 
-/* Confirmed badge floating */
-.o_sale_confirmed_badge {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #28a745 0%, #1f8f5f 100%);
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+.o_form_sheet.o_sale_order_confirmed_watermark::after {
+    background: linear-gradient(
+        90deg,
+        rgba(28, 176, 92, 0) 0%,
+        rgba(28, 176, 92, 0.35) 16%,
+        rgba(28, 176, 92, 0.95) 50%,
+        rgba(28, 176, 92, 0.35) 84%,
+        rgba(28, 176, 92, 0) 100%
+    );
+}
+
+.o_form_sheet.o_sale_order_draft_watermark::after {
+    background: linear-gradient(
+        90deg,
+        rgba(39, 119, 255, 0) 0%,
+        rgba(39, 119, 255, 0.34) 16%,
+        rgba(39, 119, 255, 0.94) 50%,
+        rgba(39, 119, 255, 0.34) 84%,
+        rgba(39, 119, 255, 0) 100%
+    );
+}
+
+.o_form_sheet.o_sale_order_sent_watermark::after {
+    background: linear-gradient(
+        90deg,
+        rgba(106, 76, 255, 0) 0%,
+        rgba(106, 76, 255, 0.34) 16%,
+        rgba(106, 76, 255, 0.94) 50%,
+        rgba(106, 76, 255, 0.34) 84%,
+        rgba(106, 76, 255, 0) 100%
+    );
+}
+
+.o_form_sheet.o_sale_order_cancelled_watermark::after {
+    background: linear-gradient(
+        90deg,
+        rgba(220, 53, 69, 0) 0%,
+        rgba(220, 53, 69, 0.34) 16%,
+        rgba(220, 53, 69, 0.94) 50%,
+        rgba(220, 53, 69, 0.34) 84%,
+        rgba(220, 53, 69, 0) 100%
+    );
+}
+
+/* Sheet skin by state */
+.o_form_sheet.o_sale_order_confirmed_watermark {
     box-shadow:
-        0 3px 10px rgba(40, 167, 69, 0.25),
-        0 1px 2px rgba(0, 0, 0, 0.08);
+        inset 4px 0 0 rgba(28, 176, 92, 0.75),
+        0 8px 24px rgba(28, 176, 92, 0.06);
+    background-image:
+        radial-gradient(circle at top right, rgba(28, 176, 92, 0.05), transparent 28%);
+}
+
+.o_form_sheet.o_sale_order_draft_watermark {
+    box-shadow:
+        inset 4px 0 0 rgba(39, 119, 255, 0.78),
+        0 8px 24px rgba(39, 119, 255, 0.06);
+    background-image:
+        radial-gradient(circle at top right, rgba(39, 119, 255, 0.06), transparent 28%);
+}
+
+.o_form_sheet.o_sale_order_sent_watermark {
+    box-shadow:
+        inset 4px 0 0 rgba(106, 76, 255, 0.78),
+        0 8px 24px rgba(106, 76, 255, 0.06);
+    background-image:
+        radial-gradient(circle at top right, rgba(106, 76, 255, 0.06), transparent 28%);
+}
+
+.o_form_sheet.o_sale_order_cancelled_watermark {
+    box-shadow:
+        inset 4px 0 0 rgba(220, 53, 69, 0.78),
+        0 8px 24px rgba(220, 53, 69, 0.06);
+    background-image:
+        radial-gradient(circle at top right, rgba(220, 53, 69, 0.05), transparent 28%);
+}
+
+/* Cancelled watermark */
+.o_form_sheet.o_sale_order_cancelled_watermark::before {
+    content: "CANCELADO";
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-24deg);
+    font-size: 112px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(220, 53, 69, 0.09);
+    white-space: nowrap;
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
-    animation: confirmedPulse 2.8s ease-in-out infinite;
+    z-index: 0;
+    text-shadow:
+        1px 1px 0 rgba(220, 53, 69, 0.025),
+        -1px -1px 0 rgba(220, 53, 69, 0.02);
 }
 
-.o_sale_confirmed_badge .o_confirmed_icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.20);
-    border-radius: 50%;
-    font-size: 12px;
-    line-height: 1;
-}
+/* ==========================================================================
+   BANNER
+   ========================================================================== */
 
-@keyframes confirmedPulse {
-    0%, 100% {
-        box-shadow:
-            0 3px 10px rgba(40, 167, 69, 0.25),
-            0 1px 2px rgba(0, 0, 0, 0.08);
-    }
-    50% {
-        box-shadow:
-            0 4px 14px rgba(40, 167, 69, 0.35),
-            0 2px 4px rgba(0, 0, 0, 0.12);
-    }
-}
-
-/* Draft badge floating */
-.o_sale_draft_badge {
-    position: absolute;
-    top: 14px;
-    right: 16px;
+.o_sale_status_banner {
+    position: relative;
     z-index: 3;
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    gap: 14px;
+    margin: 0 0 16px 0;
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    overflow: hidden;
     box-shadow:
-        0 3px 10px rgba(0, 123, 255, 0.25),
-        0 1px 2px rgba(0, 0, 0, 0.08);
+        0 10px 24px rgba(15, 23, 42, 0.05),
+        0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.o_sale_status_banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.80) 0%,
+        rgba(255, 255, 255, 0.18) 100%
+    );
+}
+
+.o_sale_status_banner > * {
+    position: relative;
+    z-index: 1;
+}
+
+.o_sale_status_banner__icon_wrap {
+    flex: 0 0 auto;
+}
+
+.o_sale_status_banner__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 800;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.o_sale_status_banner__body {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.o_sale_status_banner__eyebrow {
+    font-size: 11px;
+    line-height: 1.1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 800;
+    opacity: 0.8;
+    margin-bottom: 4px;
+}
+
+.o_sale_status_banner__title {
+    font-size: 18px;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.o_sale_status_banner__subtitle {
+    font-size: 13px;
+    line-height: 1.45;
+    opacity: 0.92;
+}
+
+.o_sale_status_banner__side {
+    flex: 0 0 auto;
+    align-self: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 800;
+    white-space: nowrap;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* Banner themes */
+.o_sale_status_banner.is-confirmed {
+    background: linear-gradient(135deg, rgba(28, 176, 92, 0.12), rgba(28, 176, 92, 0.04));
+    border-color: rgba(28, 176, 92, 0.16);
+    color: #0e5b33;
+}
+
+.o_sale_status_banner.is-confirmed .o_sale_status_banner__icon {
+    background: linear-gradient(135deg, #1cb05c, #10914b);
+    color: #ffffff;
+}
+
+.o_sale_status_banner.is-confirmed .o_sale_status_banner__side {
+    background: rgba(28, 176, 92, 0.12);
+    color: #0e5b33;
+    border: 1px solid rgba(28, 176, 92, 0.18);
+}
+
+.o_sale_status_banner.is-draft {
+    background: linear-gradient(135deg, rgba(39, 119, 255, 0.12), rgba(39, 119, 255, 0.04));
+    border-color: rgba(39, 119, 255, 0.16);
+    color: #1049a7;
+}
+
+.o_sale_status_banner.is-draft .o_sale_status_banner__icon {
+    background: linear-gradient(135deg, #2777ff, #175cd6);
+    color: #ffffff;
+}
+
+.o_sale_status_banner.is-draft .o_sale_status_banner__side {
+    background: rgba(39, 119, 255, 0.12);
+    color: #1049a7;
+    border: 1px solid rgba(39, 119, 255, 0.18);
+}
+
+.o_sale_status_banner.is-sent {
+    background: linear-gradient(135deg, rgba(106, 76, 255, 0.12), rgba(106, 76, 255, 0.04));
+    border-color: rgba(106, 76, 255, 0.16);
+    color: #4a31b8;
+}
+
+.o_sale_status_banner.is-sent .o_sale_status_banner__icon {
+    background: linear-gradient(135deg, #6a4cff, #5738df);
+    color: #ffffff;
+}
+
+.o_sale_status_banner.is-sent .o_sale_status_banner__side {
+    background: rgba(106, 76, 255, 0.12);
+    color: #4a31b8;
+    border: 1px solid rgba(106, 76, 255, 0.18);
+}
+
+.o_sale_status_banner.is-cancelled {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.12), rgba(220, 53, 69, 0.04));
+    border-color: rgba(220, 53, 69, 0.16);
+    color: #8f2030;
+}
+
+.o_sale_status_banner.is-cancelled .o_sale_status_banner__icon {
+    background: linear-gradient(135deg, #dc3545, #b92333);
+    color: #ffffff;
+}
+
+.o_sale_status_banner.is-cancelled .o_sale_status_banner__side {
+    background: rgba(220, 53, 69, 0.12);
+    color: #8f2030;
+    border: 1px solid rgba(220, 53, 69, 0.18);
+}
+
+/* ==========================================================================
+   FLOATING BADGE
+   ========================================================================== */
+
+.o_sale_status_badge {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #ffffff;
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
-    animation: draftPulse 3s ease-in-out infinite;
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.12),
+        0 1px 2px rgba(15, 23, 42, 0.08);
+    animation: o_sale_status_badge_float 2.8s ease-in-out infinite;
 }
 
-.o_sale_draft_badge .o_draft_icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.20);
+.o_sale_status_badge__dot {
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    font-size: 12px;
-    line-height: 1;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.14);
 }
 
-@keyframes draftPulse {
+.o_sale_status_badge.is-confirmed {
+    background: linear-gradient(135deg, #1cb05c, #10914b);
+}
+
+.o_sale_status_badge.is-draft {
+    background: linear-gradient(135deg, #2777ff, #175cd6);
+}
+
+.o_sale_status_badge.is-sent {
+    background: linear-gradient(135deg, #6a4cff, #5738df);
+}
+
+.o_sale_status_badge.is-cancelled {
+    background: linear-gradient(135deg, #dc3545, #b92333);
+}
+
+@keyframes o_sale_status_badge_float {
     0%, 100% {
-        box-shadow:
-            0 3px 10px rgba(0, 123, 255, 0.25),
-            0 1px 2px rgba(0, 0, 0, 0.08);
+        transform: translateY(0);
     }
     50% {
-        box-shadow:
-            0 4px 14px rgba(0, 123, 255, 0.35),
-            0 2px 4px rgba(0, 0, 0, 0.12);
+        transform: translateY(-1px);
     }
 }
 
-/* ===== Left border accents ===== */
-.o_sale_order_confirmed_watermark .o_form_sheet {
-    border-left: 4px solid rgba(40, 167, 69, 0.55) !important;
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .o_sale_status_banner {
+        padding-right: 16px;
+    }
+
+    .o_sale_status_badge {
+        position: static;
+        margin: 0 0 14px auto;
+        width: fit-content;
+        display: flex;
+    }
+
+    .o_form_sheet.o_sale_order_status_ready .o_sale_status_banner + * {
+        margin-top: 0;
+    }
 }
 
-.o_sale_order_cancelled_watermark .o_form_sheet {
-    border-left: 4px solid rgba(220, 53, 69, 0.38) !important;
-}
+@media (max-width: 768px) {
+    .o_sale_status_banner {
+        display: block;
+        padding: 14px 14px 16px 14px;
+    }
 
-.o_sale_order_draft_watermark .o_form_sheet {
-    border-left: 4px solid rgba(0, 123, 255, 0.35) !important;
-}
+    .o_sale_status_banner__icon_wrap {
+        margin-bottom: 10px;
+    }
 
-/* ===== Confirmed banner bar ===== */
-.o_sale_confirmed_banner {
-    background: linear-gradient(
-        90deg,
-        rgba(40, 167, 69, 0.04) 0%,
-        rgba(40, 167, 69, 0.09) 50%,
-        rgba(40, 167, 69, 0.04) 100%
-    );
-    border: 1px solid rgba(40, 167, 69, 0.16);
-    border-left: 4px solid rgba(40, 167, 69, 0.55);
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: #155724;
-    font-size: 14px;
-}
+    .o_sale_status_banner__side {
+        display: inline-flex;
+        margin-top: 12px;
+    }
 
-.o_sale_confirmed_banner .o_confirmed_banner_icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: rgba(40, 167, 69, 0.12);
-    border-radius: 50%;
-    color: #28a745;
-    font-size: 14px;
-}
-
-/* ===== Draft / Quotation banner bar ===== */
-.o_sale_draft_banner {
-    background: linear-gradient(
-        90deg,
-        rgba(0, 123, 255, 0.04) 0%,
-        rgba(0, 123, 255, 0.09) 50%,
-        rgba(0, 123, 255, 0.04) 100%
-    );
-    border: 1px solid rgba(0, 123, 255, 0.16);
-    border-left: 4px solid rgba(0, 123, 255, 0.55);
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: #004085;
-    font-size: 14px;
-}
-
-.o_sale_draft_banner .o_draft_banner_icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: rgba(0, 123, 255, 0.12);
-    border-radius: 50%;
-    color: #007bff;
-    font-size: 14px;
+    .o_form_sheet.o_sale_order_cancelled_watermark::before {
+        font-size: 64px;
+        letter-spacing: 0.12em;
+    }
 }
