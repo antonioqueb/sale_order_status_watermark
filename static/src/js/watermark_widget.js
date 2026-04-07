@@ -82,11 +82,6 @@ patch(FormController.prototype, {
         formSheet.classList.add("o_sale_order_status_ready", config.sheetClass);
         formSheet.dataset.saleOrderState = state;
 
-        // Barra lateral continua real
-        const rail = document.createElement("div");
-        rail.className = "o_sale_status_rail";
-        formSheet.appendChild(rail);
-
         // Banner limpio, sin botones/pastillas laterales
         const banner = document.createElement("div");
         banner.className = `o_sale_status_banner ${config.bannerClass}`;
@@ -108,7 +103,7 @@ patch(FormController.prototype, {
         formSheet.classList.remove(...STATUS_CLASSES);
         delete formSheet.dataset.saleOrderState;
 
-        formSheet.querySelectorAll(".o_sale_status_banner, .o_sale_status_rail").forEach((el) => {
+        formSheet.querySelectorAll(".o_sale_status_banner").forEach((el) => {
             el.remove();
         });
     },

@@ -70,54 +70,6 @@
     );
 }
 
-/* Barra lateral continua real */
-.o_sale_status_rail {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 4px;
-    border-radius: 14px 0 0 14px;
-    pointer-events: none;
-    z-index: 7;
-}
-
-.o_form_sheet.o_sale_order_confirmed_watermark .o_sale_status_rail {
-    background: linear-gradient(
-        180deg,
-        rgba(28, 176, 92, 0.92) 0%,
-        rgba(28, 176, 92, 0.78) 100%
-    );
-    box-shadow: 0 0 0 1px rgba(28, 176, 92, 0.06);
-}
-
-.o_form_sheet.o_sale_order_draft_watermark .o_sale_status_rail {
-    background: linear-gradient(
-        180deg,
-        rgba(39, 119, 255, 0.92) 0%,
-        rgba(39, 119, 255, 0.78) 100%
-    );
-    box-shadow: 0 0 0 1px rgba(39, 119, 255, 0.06);
-}
-
-.o_form_sheet.o_sale_order_sent_watermark .o_sale_status_rail {
-    background: linear-gradient(
-        180deg,
-        rgba(106, 76, 255, 0.92) 0%,
-        rgba(106, 76, 255, 0.78) 100%
-    );
-    box-shadow: 0 0 0 1px rgba(106, 76, 255, 0.06);
-}
-
-.o_form_sheet.o_sale_order_cancelled_watermark .o_sale_status_rail {
-    background: linear-gradient(
-        180deg,
-        rgba(220, 53, 69, 0.92) 0%,
-        rgba(220, 53, 69, 0.78) 100%
-    );
-    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.06);
-}
-
 /* Fondo sutil por estado */
 .o_form_sheet.o_sale_order_confirmed_watermark {
     background-image:
