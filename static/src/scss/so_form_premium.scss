@@ -197,17 +197,73 @@ $so-page-inset:  16px;
         color: $so-ink-2 !important;
     }
 
+    // ════════ GRUPOS DE CAMPOS: paneles elegantes ════════
+    // Vendedor / Job Name / Embajador / Referencia y los de Otra
+    // Información (forma de pago, política, uso, lista, términos): cada
+    // grupo es un panel suave con las columnas bien separadas y cada campo
+    // como una fila aireada con su regla inferior fina — lectura de ficha.
+    .o_form_sheet > .o_group,
+    .o_notebook .tab-pane > .o_group {
+        background: $so-surface-alt;
+        border: 1px solid $so-border;
+        border-radius: 12px;
+        padding: 10px 22px 12px;
+        column-gap: 48px;
+        margin-bottom: 14px;
+    }
+
+    .o_inner_group {
+        row-gap: 0 !important;
+
+        > .o_wrap_field {
+            padding: 8px 0 !important;
+            border-bottom: 1px solid rgba(215, 232, 242, 0.65);
+            align-items: center;
+
+            &:last-child { border-bottom: none; }
+
+            .o_cell.o_wrap_label { padding-right: 18px; }
+        }
+
+        .o_field_widget,
+        .o_field_widget input,
+        .o_field_widget .o_input,
+        .o_field_widget span,
+        .o_field_widget a {
+            font-size: 13px;
+            font-weight: 600;
+            color: $so-ink-2;
+        }
+
+        .o_field_many2one a,
+        .o_field_many2one .o_form_uri {
+            color: $so-accent-2 !important;
+        }
+
+        // Los inputs viven "a ras" del panel: sin cajas dentro de cajas
+        .o_input {
+            background: transparent !important;
+            border-color: transparent;
+
+            &:hover { border-color: $so-border-2; }
+            &:focus { border-color: $so-accent !important; }
+        }
+    }
+
     // ════════ NOTEBOOK: control SEGMENTADO (adiós barras moradas) ════════
     .o_notebook {
         margin-top: 12px;
 
         .o_notebook_headers { border: none !important; }
 
+        // Riel a TODO el ancho: las pestañas se reparten el espacio completo
+        // (en pantallas anchas ya no queda el hueco "incompleto" a la
+        // derecha); si son muchas y no caben, scroll lateral sin encoger.
         .nav-tabs {
-            display: inline-flex;
-            max-width: 100%;
-            gap: 2px;
-            padding: 4px;
+            display: flex;
+            width: 100%;
+            gap: 4px;
+            padding: 5px;
             border: 1px solid $so-border !important;
             border-bottom: 1px solid $so-border !important;
             border-radius: 12px;
@@ -218,7 +274,12 @@ $so-page-inset:  16px;
 
             &::-webkit-scrollbar { display: none; }
 
-            .nav-item { flex: 0 0 auto; }
+            .nav-item {
+                flex: 1 1 0;
+                min-width: max-content;
+
+                .nav-link { width: 100%; text-align: center; }
+            }
 
             // Se anula de RAÍZ el indicador Enterprise (barra superior
             // morada del tab activo = box-shadow/borde del tema).
@@ -238,9 +299,9 @@ $so-page-inset:  16px;
                 border-radius: 9px !important;
                 background: transparent;
                 color: $so-ink-3 !important;
-                font-size: 12px;
+                font-size: 12.5px;
                 font-weight: 700;
-                padding: 6px 16px;
+                padding: 8px 18px;
                 white-space: nowrap;
                 transition: color .12s ease, background .12s ease;
 
