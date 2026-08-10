@@ -156,14 +156,27 @@ $so-page-inset:  16px;
         margin-bottom: 8px;
 
         // El FOLIO es la identidad del documento: grande y rotundo.
+        // OJO: el folio vive en un o_field_widget DENTRO del h1, y la regla
+        // genérica de campos (13px, más específica) se lo comía — por eso
+        // los aumentos anteriores no se veían. Regla dedicada con !important.
         h1 {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 850;
             letter-spacing: -0.02em;
             line-height: 1.15;
             color: $so-ink;
+        }
 
-            input { font-size: 32px; font-weight: 850; }
+        h1 .o_field_widget,
+        h1 .o_field_widget input,
+        h1 .o_field_widget span,
+        h1 input,
+        h1 span {
+            font-size: 34px !important;
+            font-weight: 850 !important;
+            letter-spacing: -0.02em;
+            line-height: 1.15 !important;
+            color: $so-ink !important;
         }
     }
 
@@ -508,7 +521,11 @@ $so-page-inset:  16px;
         }
 
         .oe_title h1,
-        .oe_title h1 input { font-size: 23px; }
+        .oe_title h1 input,
+        .oe_title h1 .o_field_widget,
+        .oe_title h1 .o_field_widget input,
+        .oe_title h1 .o_field_widget span,
+        .oe_title h1 span { font-size: 25px !important; }
 
         .o_form_sheet {
             border-radius: 10px !important;
