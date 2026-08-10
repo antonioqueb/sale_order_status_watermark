@@ -3,6 +3,18 @@ import { FormController } from "@web/views/form/form_controller";
 import { patch } from "@web/core/utils/patch";
 import { onMounted, onPatched } from "@odoo/owl";
 
+// Formularios que comparten la piel premium (so_form_premium.scss).
+const PREMIUM_FORM_MODELS = [
+    "sale.order",
+    "purchase.order",
+    "workshop.order",
+    "stock.lot.hold.order",
+    "stock.lot.hold",
+    "res.partner",
+    "product.template",
+    "product.product",
+];
+
 const STATUS_CLASSES = [
     "o_sale_order_status_ready",
     "o_sale_order_cancelled_watermark",
@@ -57,23 +69,27 @@ patch(FormController.prototype, {
     },
 
     _applySaleOrderStatusSkin() {
-        if (this.props.resModel !== "sale.order") {
-            return;
-        }
-
         const renderer = this.el || this.__owl__?.bdom?.el;
         if (!renderer) {
             return;
         }
 
-        // Scope del rediseño premium del formulario de OV (so_form_premium.scss):
-        // la clase vive en la RAÍZ .o_form_view para alcanzar también header,
-        // statusbar y chatter (el sheet no los contiene).
-        const formView = renderer.classList?.contains("o_form_view")
-            ? renderer
-            : renderer.closest?.(".o_form_view") || renderer.querySelector?.(".o_form_view");
-        if (formView) {
-            formView.classList.add("som-so-form");
+        // Scope del rediseño premium (so_form_premium.scss): la clase vive
+        // en la RAÍZ .o_form_view para alcanzar también header, statusbar y
+        // chatter (el sheet no los contiene). Aplica a los formularios de
+        // la casa que comparten la piel.
+        if (PREMIUM_FORM_MODELS.includes(this.props.resModel)) {
+            const formView = renderer.classList?.contains("o_form_view")
+                ? renderer
+                : renderer.closest?.(".o_form_view") || renderer.querySelector?.(".o_form_view");
+            if (formView) {
+                formView.classList.add("som-so-form");
+            }
+        }
+
+        // La marca de agua / banner de estado es EXCLUSIVA de la OV.
+        if (this.props.resModel !== "sale.order") {
+            return;
         }
 
         const formSheet = renderer.querySelector(".o_form_sheet");
