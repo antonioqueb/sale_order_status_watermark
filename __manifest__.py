@@ -1,6 +1,6 @@
 {
     'name': 'Sale Order Status Watermark',
-    'version': '19.0.2.1.0',
+    'version': '19.0.2.2.0',
     'category': 'Sales',
     'summary': 'Visual watermarks for cancelled and confirmed sale orders',
     'description': """

@@ -22,17 +22,33 @@ $so-ink-2:       #284256;
 $so-ink-3:       #60798c;
 $so-row-line:    #edf4fa;
 
+// Inset lateral ÚNICO de la página (misma corrección que el formulario de
+// embarque): header de acciones y hoja comparten inicio, fin y ancho útil —
+// nada referido al viewport.
+$so-page-inset:  16px;
+
 .o_form_view.som-so-form {
     background: $so-bg !important;
     font-variant-numeric: tabular-nums;
 
-    // ════════ HEADER / STATUSBAR: barra "glass" fija y limpia ════════
+    // ════════ HEADER / STATUSBAR: en el MISMO contenedor que la hoja ════════
+    // width referida al inset de página, no al viewport: los botones arrancan
+    // exactamente donde arranca la tarjeta y los estatus terminan donde ella
+    // termina (la lección del formulario de embarque).
     .o_form_statusbar {
+        width: calc(100% - #{2 * $so-page-inset}) !important;
+        max-width: calc(100% - #{2 * $so-page-inset}) !important;
+        margin: 12px $so-page-inset 0 !important;
+        box-sizing: border-box;
+
         background: rgba(255, 255, 255, 0.92) !important;
         backdrop-filter: blur(8px);
-        border-bottom: 1px solid $so-border !important;
-        padding: 8px 16px !important;
+        border: 1px solid $so-border !important;
+        border-radius: 12px !important;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        padding: 8px 14px !important;
         gap: 8px;
+        flex-wrap: wrap;
 
         > .o_statusbar_buttons {
             gap: 6px !important;
@@ -69,9 +85,14 @@ $so-row-line:    #edf4fa;
             &:hover { border-color: $so-accent !important; color: $so-accent-2 !important; }
         }
 
-        // Estatus: pastillas aireadas, actual llena en azul marca
+        // Estatus: pastillas aireadas, actual llena en azul marca.
+        // NUNCA se comprimen: reservan su ancho y, si no caben junto a los
+        // botones, envuelven a su propia fila (flex-wrap del header).
         .o_statusbar_status {
             column-gap: 8px;
+            flex: 0 0 auto;
+            min-width: max-content;
+            margin-left: auto;
 
             button,
             .o_arrow_button {
@@ -390,6 +411,13 @@ $so-row-line:    #edf4fa;
 // ════════ RESPONSIVO: completo en cualquier pantalla ════════
 @media (max-width: 991.98px) {
     .o_form_view.som-so-form {
+        // El inset baja a 8px: header y hoja lo comparten SIEMPRE.
+        .o_form_statusbar {
+            width: calc(100% - 16px) !important;
+            max-width: calc(100% - 16px) !important;
+            margin: 8px 8px 0 !important;
+        }
+
         .o_form_sheet {
             max-width: calc(100% - 16px) !important;
             margin: 10px 8px 14px !important;
