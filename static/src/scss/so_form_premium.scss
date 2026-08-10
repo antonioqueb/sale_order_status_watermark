@@ -1,8 +1,8 @@
 // =====================================================================
-// Formulario de Orden de Venta — rediseño PREMIUM SOBRIO
-// Mismo lenguaje visual que Autorización de Precios (price_auth_review):
-// rectángulos a lo ancho, superficies blancas, bordes suaves azulados,
-// acentos de marca con moderación. Sin gradientes ni tarjetas infladas.
+// Formulario de Orden de Venta — rediseño PREMIUM v2
+// Lenguaje del Autorizador de Precios llevado más lejos: superficies
+// blancas, aire, tipografía firme, acentos azul marca. Sin rastro del
+// morado Enterprise (indicadores de tab anulados de raíz).
 //
 // Scope: .som-so-form (la agrega watermark_widget.js SOLO en sale.order).
 // Punto de restauración: tag git `pre-rediseno-so` en este repo.
@@ -10,22 +10,26 @@
 
 $so-accent:      #247fbd;
 $so-accent-2:    #155f94;
-$so-bg:          #f6fafd;
+$so-sky:         #5CB9F2;
+$so-bg:          #f4f8fc;
 $so-surface:     #ffffff;
 $so-surface-alt: #f8fcff;
+$so-track:       #eaf2f9;
 $so-border:      #d7e8f2;
 $so-border-2:    #bdd7e8;
 $so-ink:         #0f172a;
 $so-ink-2:       #284256;
 $so-ink-3:       #60798c;
+$so-row-line:    #edf4fa;
 
 .o_form_view.som-so-form {
     background: $so-bg !important;
     font-variant-numeric: tabular-nums;
 
-    // ── HEADER / STATUSBAR: barra limpia, botones rectos, estatus pill ──
+    // ════════ HEADER / STATUSBAR: barra "glass" fija y limpia ════════
     .o_form_statusbar {
-        background: $so-surface !important;
+        background: rgba(255, 255, 255, 0.92) !important;
+        backdrop-filter: blur(8px);
         border-bottom: 1px solid $so-border !important;
         padding: 8px 16px !important;
         gap: 8px;
@@ -36,19 +40,25 @@ $so-ink-3:       #60798c;
         }
 
         .btn {
-            border-radius: 8px !important;
+            border-radius: 10px !important;
             font-weight: 700;
             letter-spacing: -0.01em;
-            min-height: 32px;
-            padding: 5px 14px;
+            min-height: 33px;
+            padding: 5px 15px;
             box-shadow: none !important;
+            transition: transform .12s ease, box-shadow .12s ease;
         }
 
         .btn-primary {
             background: $so-accent-2 !important;
             border-color: $so-accent-2 !important;
+            box-shadow: 0 6px 14px -6px rgba(21, 95, 148, 0.55) !important;
 
-            &:hover { background: $so-accent !important; border-color: $so-accent !important; }
+            &:hover {
+                background: $so-accent !important;
+                border-color: $so-accent !important;
+                transform: translateY(-1px);
+            }
         }
 
         .btn-secondary {
@@ -59,7 +69,7 @@ $so-ink-3:       #60798c;
             &:hover { border-color: $so-accent !important; color: $so-accent-2 !important; }
         }
 
-        // Estatus: pastillas separadas, actual en azul marca lleno
+        // Estatus: pastillas aireadas, actual llena en azul marca
         .o_statusbar_status {
             column-gap: 8px;
 
@@ -73,6 +83,7 @@ $so-ink-3:       #60798c;
                 font-weight: 700 !important;
                 min-height: 28px !important;
                 padding: 4px 14px !important;
+                box-shadow: none !important;
 
                 &::before,
                 &::after { display: none !important; }
@@ -83,11 +94,12 @@ $so-ink-3:       #60798c;
                 border-color: $so-accent-2 !important;
                 color: #fff !important;
                 font-weight: 800 !important;
+                box-shadow: 0 5px 12px -5px rgba(21, 95, 148, 0.6) !important;
             }
         }
     }
 
-    // ── SHEET: rectángulo blanco a lo ancho (pantalla grande = ancho útil) ──
+    // ════════ SHEET: lienzo blanco a lo ancho, flotando suave ════════
     .o_form_sheet_bg {
         background: $so-bg !important;
         padding: 0 !important;
@@ -95,33 +107,34 @@ $so-ink-3:       #60798c;
 
     .o_form_sheet {
         max-width: calc(100% - 32px) !important;
-        margin: 14px 16px 18px !important;
-        padding: 20px 24px 24px !important;
+        margin: 14px 16px 20px !important;
+        padding: 22px 26px 26px !important;
         background: $so-surface !important;
         border: 1px solid $so-border !important;
-        border-top: 3px solid $so-accent !important;
-        border-radius: 10px !important;
-        box-shadow: none !important;
+        border-radius: 14px !important;
+        box-shadow:
+            0 1px 2px rgba(15, 23, 42, 0.04),
+            0 14px 34px -18px rgba(21, 95, 148, 0.18) !important;
     }
 
-    // ── TÍTULO ──
+    // ════════ TÍTULO ════════
     .oe_title {
-        margin-bottom: 6px;
+        margin-bottom: 8px;
 
         h1 {
-            font-size: 22px;
-            font-weight: 750;
-            letter-spacing: -0.01em;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
             color: $so-ink;
 
-            input { font-size: 22px; font-weight: 750; }
+            input { font-size: 24px; font-weight: 800; }
         }
     }
 
-    // ── ETIQUETAS Y VALORES: sistema eyebrow del autorizador ──
+    // ════════ CAMPOS: sistema eyebrow + foco de marca ════════
     .o_form_label {
         font-size: 10.5px !important;
-        font-weight: 700 !important;
+        font-weight: 750 !important;
         letter-spacing: 0.06em;
         text-transform: uppercase;
         color: $so-ink-3 !important;
@@ -134,9 +147,14 @@ $so-ink-3:       #60798c;
         font-size: 13px;
     }
 
-    // Títulos de grupo (separadores): banda con acento lateral
+    .o_field_widget .o_input:focus,
+    .o_field_widget input:focus {
+        border-color: $so-accent !important;
+        box-shadow: 0 2px 0 -1px $so-accent !important;
+    }
+
     .o_horizontal_separator {
-        margin: 14px 0 8px;
+        margin: 16px 0 8px;
         padding: 4px 0 4px 10px;
         border-left: 3px solid $so-accent;
         font-size: 11.5px !important;
@@ -146,108 +164,236 @@ $so-ink-3:       #60798c;
         color: $so-ink-2 !important;
     }
 
-    // ── NOTEBOOK: pestañas pill sobrias ──
+    // ════════ NOTEBOOK: control SEGMENTADO (adiós barras moradas) ════════
     .o_notebook {
-        margin-top: 10px;
+        margin-top: 12px;
+
+        .o_notebook_headers { border: none !important; }
 
         .nav-tabs {
-            gap: 6px;
-            padding: 0 0 8px;
+            display: inline-flex;
+            max-width: 100%;
+            gap: 2px;
+            padding: 4px;
+            border: 1px solid $so-border !important;
             border-bottom: 1px solid $so-border !important;
-            flex-wrap: nowrap;
+            border-radius: 12px;
+            background: $so-track;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar { display: none; }
 
             .nav-item { flex: 0 0 auto; }
 
+            // Se anula de RAÍZ el indicador Enterprise (barra superior
+            // morada del tab activo = box-shadow/borde del tema).
+            .nav-link,
+            .nav-link.active,
+            .nav-link:hover,
+            .nav-link:focus {
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+
+                &::before,
+                &::after { display: none !important; }
+            }
+
             .nav-link {
-                border: 1px solid $so-border !important;
-                border-radius: 999px !important;
-                background: $so-surface;
+                border-radius: 9px !important;
+                background: transparent;
                 color: $so-ink-3 !important;
                 font-size: 12px;
                 font-weight: 700;
-                padding: 5px 15px;
+                padding: 6px 16px;
                 white-space: nowrap;
+                transition: color .12s ease, background .12s ease;
 
-                &:hover { border-color: $so-accent !important; color: $so-accent-2 !important; }
+                &:hover { color: $so-accent-2 !important; }
 
                 &.active {
-                    background: $so-accent-2 !important;
-                    border-color: $so-accent-2 !important;
-                    color: #fff !important;
+                    background: $so-surface !important;
+                    color: $so-accent-2 !important;
+                    font-weight: 800;
+                    box-shadow:
+                        0 1px 2px rgba(15, 23, 42, 0.08),
+                        0 4px 10px -4px rgba(21, 95, 148, 0.25) !important;
                 }
             }
         }
 
-        .tab-content { padding-top: 12px; }
+        .tab-content { padding-top: 14px; }
     }
 
-    // ── LISTAS EMBEBIDAS (líneas de la orden y demás x2many) ──
-    // El CONTENIDO manda: la tabla nunca se recorta — si no cabe, scrollea
-    // lateral dentro de su propio contenedor (el ancho lo administra
-    // theme_list_modern; aquí solo piel y contención).
+    // ════════ LÍNEAS DE LA ORDEN: identidad propia ════════
+    // Filas altas y aireadas, sin rejilla vertical; el producto manda a la
+    // izquierda con barra de acento al pasar; números tabulares alineados;
+    // totales como cierre firme. El CONTENIDO nunca se recorta: scroll
+    // lateral propio (los anchos los sigue administrando theme_list_modern).
     .o_list_renderer {
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch;
-        border: 1px solid $so-border;
-        border-radius: 8px;
+        border: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
 
-        table { margin-bottom: 0; }
+        table {
+            margin-bottom: 0;
+            border-collapse: separate !important;
+            border-spacing: 0;
+        }
 
         thead th {
-            background: $so-surface-alt !important;
-            border-bottom: 1px solid $so-border !important;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: $so-surface !important;
+            border-top: none !important;
+            border-bottom: 2px solid $so-border-2 !important;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
             color: $so-ink-3 !important;
-            font-size: 10.5px !important;
-            font-weight: 750 !important;
-            letter-spacing: 0.05em;
+            font-size: 10px !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.07em;
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        tbody td {
-            border-bottom: 1px solid #eef5fa !important;
-            font-size: 12.5px;
+        tbody {
+            td {
+                border-bottom: 1px solid $so-row-line !important;
+                padding-top: 9px !important;
+                padding-bottom: 9px !important;
+                font-size: 12.5px;
+                vertical-align: middle;
+            }
+
+            // Producto (primera celda de datos) con más presencia
+            td.o_list_many2one:first-of-type,
+            td[name="product_id"],
+            td[name="product_template_id"] {
+                font-weight: 700;
+                color: $so-ink;
+            }
+
+            tr:hover:not(.o_selected_row) > td {
+                background: #f4f9fd !important;
+            }
+
+            // Barra de acento viva al pasar / editar
+            tr:hover:not(.o_selected_row) > td:first-child {
+                box-shadow: inset 3px 0 0 $so-sky;
+            }
+
+            tr.o_selected_row > td {
+                background: #eef6fd !important;
+            }
+
+            tr.o_selected_row > td:first-child {
+                box-shadow: inset 3px 0 0 $so-accent-2;
+            }
+
+            // Secciones y notas de la orden
+            tr.o_is_line_section > td {
+                background: $so-surface-alt !important;
+                border-bottom: 1px solid $so-border !important;
+                color: $so-ink-2 !important;
+                font-size: 11px !important;
+                font-weight: 800 !important;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            }
+
+            tr.o_is_line_note > td {
+                color: $so-ink-3 !important;
+                font-style: italic;
+            }
         }
 
-        tbody tr:hover:not(.o_selected_row) > td { background: #f4f9fd !important; }
+        // "Agregar línea / sección / nota" como acciones de marca
+        .o_field_x2many_list_row_add {
+            padding-top: 10px;
+
+            a {
+                display: inline-block;
+                margin-right: 8px;
+                padding: 4px 14px;
+                border: 1px dashed $so-border-2;
+                border-radius: 999px;
+                color: $so-accent-2 !important;
+                font-size: 12px;
+                font-weight: 750;
+
+                &:hover {
+                    border-style: solid;
+                    border-color: $so-accent;
+                    background: $so-surface-alt;
+                    text-decoration: none;
+                }
+            }
+        }
 
         tfoot td {
-            background: $so-surface-alt !important;
-            border-top: 1px solid $so-border-2 !important;
+            background: transparent !important;
+            border-top: 2px solid $so-border-2 !important;
+            border-bottom: none !important;
+            padding-top: 10px !important;
+            color: $so-ink !important;
+            font-size: 13px;
             font-weight: 800;
         }
     }
 
-    // ── BOTONES INTELIGENTES ──
+    // Totales del pie de la orden (subtotal / impuestos / total)
+    .oe_subtotal_footer {
+        .o_form_label { font-size: 10px !important; }
+
+        .oe_subtotal_footer_separator {
+            border-top: 2px solid $so-border-2 !important;
+            font-size: 16px !important;
+            font-weight: 850 !important;
+            color: $so-ink !important;
+        }
+    }
+
+    // ════════ SMART BUTTONS ════════
     .oe_button_box .oe_stat_button {
         border: 1px solid $so-border !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
         margin-left: 6px;
         background: $so-surface;
+        transition: transform .12s ease, border-color .12s ease;
 
-        &:hover { border-color: $so-accent !important; }
+        &:hover {
+            border-color: $so-accent !important;
+            transform: translateY(-1px);
+        }
 
         .o_stat_value { color: $so-accent-2; font-weight: 800; }
         .o_stat_text  { color: $so-ink-3; }
+        i             { color: $so-accent; }
     }
 
-    // ── CHATTER: misma superficie sobria ──
+    // ════════ CHATTER ════════
     .o-mail-Chatter {
         background: $so-bg !important;
 
         .o-mail-Chatter-top { border-bottom: 1px solid $so-border; }
+
+        .o-mail-Message { border-radius: 10px; }
     }
 }
 
-// ── RESPONSIVO: siempre completo, en cualquier pantalla ─────────────────
+// ════════ RESPONSIVO: completo en cualquier pantalla ════════
 @media (max-width: 991.98px) {
     .o_form_view.som-so-form {
         .o_form_sheet {
             max-width: calc(100% - 16px) !important;
             margin: 10px 8px 14px !important;
-            padding: 14px 14px 16px !important;
+            padding: 16px 14px 18px !important;
         }
     }
 }
@@ -260,13 +406,17 @@ $so-ink-3:       #60798c;
         }
 
         .oe_title h1,
-        .oe_title h1 input { font-size: 18px; }
+        .oe_title h1 input { font-size: 19px; }
 
         .o_form_sheet {
-            border-radius: 8px !important;
+            border-radius: 10px !important;
             padding: 12px 10px 14px !important;
         }
 
-        .o_notebook .nav-tabs .nav-link { font-size: 11px; padding: 4px 12px; }
+        .o_notebook .nav-tabs {
+            display: flex;
+
+            .nav-link { font-size: 11px; padding: 5px 12px; }
+        }
     }
 }
