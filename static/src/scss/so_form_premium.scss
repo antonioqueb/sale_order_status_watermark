@@ -155,13 +155,15 @@ $so-page-inset:  16px;
     .oe_title {
         margin-bottom: 8px;
 
+        // El FOLIO es la identidad del documento: grande y rotundo.
         h1 {
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 32px;
+            font-weight: 850;
             letter-spacing: -0.02em;
+            line-height: 1.15;
             color: $so-ink;
 
-            input { font-size: 24px; font-weight: 800; }
+            input { font-size: 32px; font-weight: 850; }
         }
     }
 
@@ -506,7 +508,7 @@ $so-page-inset:  16px;
         }
 
         .oe_title h1,
-        .oe_title h1 input { font-size: 19px; }
+        .oe_title h1 input { font-size: 23px; }
 
         .o_form_sheet {
             border-radius: 10px !important;
