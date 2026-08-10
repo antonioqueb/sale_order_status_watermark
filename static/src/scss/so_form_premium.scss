@@ -197,33 +197,12 @@ $so-page-inset:  16px;
         color: $so-ink-2 !important;
     }
 
-    // ════════ GRUPOS DE CAMPOS: paneles elegantes ════════
-    // Vendedor / Job Name / Embajador / Referencia y los de Otra
-    // Información (forma de pago, política, uso, lista, términos): cada
-    // grupo es un panel suave con las columnas bien separadas y cada campo
-    // como una fila aireada con su regla inferior fina — lectura de ficha.
-    .o_form_sheet > .o_group,
-    .o_notebook .tab-pane > .o_group {
-        background: $so-surface-alt;
-        border: 1px solid $so-border;
-        border-radius: 12px;
-        padding: 10px 22px 12px;
-        column-gap: 48px;
-        margin-bottom: 14px;
-    }
-
+    // ════════ GRUPOS DE CAMPOS: limpieza SIN tocar la geometría ════════
+    // El acomodo nativo (dos columnas de Odoo) se respeta íntegro; aquí
+    // solo tipografía firme, aire vertical sutil e inputs a ras — orden y
+    // limpieza sin reinventar el layout.
     .o_inner_group {
-        row-gap: 0 !important;
-
-        > .o_wrap_field {
-            padding: 8px 0 !important;
-            border-bottom: 1px solid rgba(215, 232, 242, 0.65);
-            align-items: center;
-
-            &:last-child { border-bottom: none; }
-
-            .o_cell.o_wrap_label { padding-right: 18px; }
-        }
+        row-gap: 3px;
 
         .o_field_widget,
         .o_field_widget input,
@@ -240,7 +219,7 @@ $so-page-inset:  16px;
             color: $so-accent-2 !important;
         }
 
-        // Los inputs viven "a ras" del panel: sin cajas dentro de cajas
+        // Inputs a ras: sin caja en lectura, borde suave al pasar, azul al editar
         .o_input {
             background: transparent !important;
             border-color: transparent;
