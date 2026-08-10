@@ -1,6 +1,6 @@
 {
     'name': 'Sale Order Status Watermark',
-    'version': '19.0.1.0.0',
+    'version': '19.0.2.0.0',
     'category': 'Sales',
     'summary': 'Visual watermarks for cancelled and confirmed sale orders',
     'description': """
@@ -15,6 +15,7 @@
     'assets': {
         'web.assets_backend': [
             'sale_order_status_watermark/static/src/scss/watermark.scss',
+            'sale_order_status_watermark/static/src/scss/so_form_premium.scss',
             'sale_order_status_watermark/static/src/xml/watermark_templates.xml',
             'sale_order_status_watermark/static/src/js/watermark_widget.js',
         ],

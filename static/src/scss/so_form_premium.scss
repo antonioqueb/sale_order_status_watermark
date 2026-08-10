@@ -1,0 +1,272 @@
+// =====================================================================
+// Formulario de Orden de Venta — rediseño PREMIUM SOBRIO
+// Mismo lenguaje visual que Autorización de Precios (price_auth_review):
+// rectángulos a lo ancho, superficies blancas, bordes suaves azulados,
+// acentos de marca con moderación. Sin gradientes ni tarjetas infladas.
+//
+// Scope: .som-so-form (la agrega watermark_widget.js SOLO en sale.order).
+// Punto de restauración: tag git `pre-rediseno-so` en este repo.
+// =====================================================================
+
+$so-accent:      #247fbd;
+$so-accent-2:    #155f94;
+$so-bg:          #f6fafd;
+$so-surface:     #ffffff;
+$so-surface-alt: #f8fcff;
+$so-border:      #d7e8f2;
+$so-border-2:    #bdd7e8;
+$so-ink:         #0f172a;
+$so-ink-2:       #284256;
+$so-ink-3:       #60798c;
+
+.o_form_view.som-so-form {
+    background: $so-bg !important;
+    font-variant-numeric: tabular-nums;
+
+    // ── HEADER / STATUSBAR: barra limpia, botones rectos, estatus pill ──
+    .o_form_statusbar {
+        background: $so-surface !important;
+        border-bottom: 1px solid $so-border !important;
+        padding: 8px 16px !important;
+        gap: 8px;
+
+        > .o_statusbar_buttons {
+            gap: 6px !important;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border-radius: 8px !important;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            min-height: 32px;
+            padding: 5px 14px;
+            box-shadow: none !important;
+        }
+
+        .btn-primary {
+            background: $so-accent-2 !important;
+            border-color: $so-accent-2 !important;
+
+            &:hover { background: $so-accent !important; border-color: $so-accent !important; }
+        }
+
+        .btn-secondary {
+            background: $so-surface !important;
+            border: 1px solid $so-border-2 !important;
+            color: $so-ink-2 !important;
+
+            &:hover { border-color: $so-accent !important; color: $so-accent-2 !important; }
+        }
+
+        // Estatus: pastillas separadas, actual en azul marca lleno
+        .o_statusbar_status {
+            column-gap: 8px;
+
+            button,
+            .o_arrow_button {
+                border: 1px solid $so-border-2 !important;
+                border-radius: 999px !important;
+                background: $so-surface !important;
+                color: $so-ink-3 !important;
+                font-size: 11px !important;
+                font-weight: 700 !important;
+                min-height: 28px !important;
+                padding: 4px 14px !important;
+
+                &::before,
+                &::after { display: none !important; }
+            }
+
+            .o_arrow_button_current {
+                background: $so-accent-2 !important;
+                border-color: $so-accent-2 !important;
+                color: #fff !important;
+                font-weight: 800 !important;
+            }
+        }
+    }
+
+    // ── SHEET: rectángulo blanco a lo ancho (pantalla grande = ancho útil) ──
+    .o_form_sheet_bg {
+        background: $so-bg !important;
+        padding: 0 !important;
+    }
+
+    .o_form_sheet {
+        max-width: calc(100% - 32px) !important;
+        margin: 14px 16px 18px !important;
+        padding: 20px 24px 24px !important;
+        background: $so-surface !important;
+        border: 1px solid $so-border !important;
+        border-top: 3px solid $so-accent !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+
+    // ── TÍTULO ──
+    .oe_title {
+        margin-bottom: 6px;
+
+        h1 {
+            font-size: 22px;
+            font-weight: 750;
+            letter-spacing: -0.01em;
+            color: $so-ink;
+
+            input { font-size: 22px; font-weight: 750; }
+        }
+    }
+
+    // ── ETIQUETAS Y VALORES: sistema eyebrow del autorizador ──
+    .o_form_label {
+        font-size: 10.5px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $so-ink-3 !important;
+    }
+
+    .o_field_widget,
+    .o_field_widget input,
+    .o_field_widget .o_input {
+        color: $so-ink-2;
+        font-size: 13px;
+    }
+
+    // Títulos de grupo (separadores): banda con acento lateral
+    .o_horizontal_separator {
+        margin: 14px 0 8px;
+        padding: 4px 0 4px 10px;
+        border-left: 3px solid $so-accent;
+        font-size: 11.5px !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $so-ink-2 !important;
+    }
+
+    // ── NOTEBOOK: pestañas pill sobrias ──
+    .o_notebook {
+        margin-top: 10px;
+
+        .nav-tabs {
+            gap: 6px;
+            padding: 0 0 8px;
+            border-bottom: 1px solid $so-border !important;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+
+            .nav-item { flex: 0 0 auto; }
+
+            .nav-link {
+                border: 1px solid $so-border !important;
+                border-radius: 999px !important;
+                background: $so-surface;
+                color: $so-ink-3 !important;
+                font-size: 12px;
+                font-weight: 700;
+                padding: 5px 15px;
+                white-space: nowrap;
+
+                &:hover { border-color: $so-accent !important; color: $so-accent-2 !important; }
+
+                &.active {
+                    background: $so-accent-2 !important;
+                    border-color: $so-accent-2 !important;
+                    color: #fff !important;
+                }
+            }
+        }
+
+        .tab-content { padding-top: 12px; }
+    }
+
+    // ── LISTAS EMBEBIDAS (líneas de la orden y demás x2many) ──
+    // El CONTENIDO manda: la tabla nunca se recorta — si no cabe, scrollea
+    // lateral dentro de su propio contenedor (el ancho lo administra
+    // theme_list_modern; aquí solo piel y contención).
+    .o_list_renderer {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid $so-border;
+        border-radius: 8px;
+
+        table { margin-bottom: 0; }
+
+        thead th {
+            background: $so-surface-alt !important;
+            border-bottom: 1px solid $so-border !important;
+            color: $so-ink-3 !important;
+            font-size: 10.5px !important;
+            font-weight: 750 !important;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        tbody td {
+            border-bottom: 1px solid #eef5fa !important;
+            font-size: 12.5px;
+        }
+
+        tbody tr:hover:not(.o_selected_row) > td { background: #f4f9fd !important; }
+
+        tfoot td {
+            background: $so-surface-alt !important;
+            border-top: 1px solid $so-border-2 !important;
+            font-weight: 800;
+        }
+    }
+
+    // ── BOTONES INTELIGENTES ──
+    .oe_button_box .oe_stat_button {
+        border: 1px solid $so-border !important;
+        border-radius: 8px !important;
+        margin-left: 6px;
+        background: $so-surface;
+
+        &:hover { border-color: $so-accent !important; }
+
+        .o_stat_value { color: $so-accent-2; font-weight: 800; }
+        .o_stat_text  { color: $so-ink-3; }
+    }
+
+    // ── CHATTER: misma superficie sobria ──
+    .o-mail-Chatter {
+        background: $so-bg !important;
+
+        .o-mail-Chatter-top { border-bottom: 1px solid $so-border; }
+    }
+}
+
+// ── RESPONSIVO: siempre completo, en cualquier pantalla ─────────────────
+@media (max-width: 991.98px) {
+    .o_form_view.som-so-form {
+        .o_form_sheet {
+            max-width: calc(100% - 16px) !important;
+            margin: 10px 8px 14px !important;
+            padding: 14px 14px 16px !important;
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+    .o_form_view.som-so-form {
+        .o_form_statusbar {
+            padding: 6px 10px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .oe_title h1,
+        .oe_title h1 input { font-size: 18px; }
+
+        .o_form_sheet {
+            border-radius: 8px !important;
+            padding: 12px 10px 14px !important;
+        }
+
+        .o_notebook .nav-tabs .nav-link { font-size: 11px; padding: 4px 12px; }
+    }
+}

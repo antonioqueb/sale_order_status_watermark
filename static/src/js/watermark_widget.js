@@ -66,6 +66,16 @@ patch(FormController.prototype, {
             return;
         }
 
+        // Scope del rediseño premium del formulario de OV (so_form_premium.scss):
+        // la clase vive en la RAÍZ .o_form_view para alcanzar también header,
+        // statusbar y chatter (el sheet no los contiene).
+        const formView = renderer.classList?.contains("o_form_view")
+            ? renderer
+            : renderer.closest?.(".o_form_view") || renderer.querySelector?.(".o_form_view");
+        if (formView) {
+            formView.classList.add("som-so-form");
+        }
+
         const formSheet = renderer.querySelector(".o_form_sheet");
         if (!formSheet) {
             return;
