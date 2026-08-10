@@ -346,25 +346,38 @@ $so-page-inset:  16px;
             }
         }
 
-        // "Agregar línea / sección / nota" como acciones de marca
+        // "Agregar un producto / sección / nota": botón lleno azul marca,
+        // texto SIEMPRE blanco. Se neutralizan el "+" (::before) y el
+        // barrido de luz (::after) que inyecta theme_list_modern.
         .o_field_x2many_list_row_add {
             padding-top: 10px;
 
-            a {
+            a,
+            button.btn-link {
                 display: inline-block;
                 margin-right: 8px;
-                padding: 4px 14px;
-                border: 1px dashed $so-border-2;
-                border-radius: 999px;
-                color: $so-accent-2 !important;
+                padding: 5px 16px;
+                border: none !important;
+                border-radius: 999px !important;
+                background: $so-accent-2 !important;
+                color: #fff !important;
                 font-size: 12px;
                 font-weight: 750;
+                text-decoration: none !important;
+                box-shadow: 0 4px 10px -4px rgba(21, 95, 148, 0.5) !important;
 
-                &:hover {
-                    border-style: solid;
-                    border-color: $so-accent;
-                    background: $so-surface-alt;
-                    text-decoration: none;
+                &::before,
+                &::after {
+                    display: none !important;
+                    content: none !important;
+                }
+
+                &:hover,
+                &:focus {
+                    background: $so-accent !important;
+                    color: #fff !important;
+                    transform: translateY(-1px);
+                    filter: none !important;
                 }
             }
         }
