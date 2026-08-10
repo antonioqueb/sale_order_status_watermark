@@ -124,6 +124,18 @@ $so-page-inset:  16px;
     .o_form_sheet_bg {
         background: $so-bg !important;
         padding: 0 !important;
+
+        // Alertas insertadas ANTES de la hoja (p. ej. autorización de
+        // entrega): mismo inset de página que el header y la tarjeta —
+        // mismo inicio, mismo final, mismo ancho útil.
+        > .alert {
+            width: calc(100% - #{2 * $so-page-inset});
+            max-width: calc(100% - #{2 * $so-page-inset});
+            margin: 12px $so-page-inset 0 !important;
+            box-sizing: border-box;
+            border-radius: 10px;
+            font-size: 13px;
+        }
     }
 
     .o_form_sheet {
@@ -411,11 +423,17 @@ $so-page-inset:  16px;
 // ════════ RESPONSIVO: completo en cualquier pantalla ════════
 @media (max-width: 991.98px) {
     .o_form_view.som-so-form {
-        // El inset baja a 8px: header y hoja lo comparten SIEMPRE.
+        // El inset baja a 8px: header, alertas y hoja lo comparten SIEMPRE.
         .o_form_statusbar {
             width: calc(100% - 16px) !important;
             max-width: calc(100% - 16px) !important;
             margin: 8px 8px 0 !important;
+        }
+
+        .o_form_sheet_bg > .alert {
+            width: calc(100% - 16px);
+            max-width: calc(100% - 16px);
+            margin: 10px 8px 0 !important;
         }
 
         .o_form_sheet {
