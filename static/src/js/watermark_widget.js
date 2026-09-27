@@ -21,6 +21,7 @@ const STATUS_CLASSES = [
     "o_sale_order_confirmed_watermark",
     "o_sale_order_draft_watermark",
     "o_sale_order_sent_watermark",
+    "o_sale_order_unauthorized_watermark",
 ];
 
 const STATUS_CONFIG = {
@@ -107,6 +108,15 @@ patch(FormController.prototype, {
 
         formSheet.classList.add("o_sale_order_status_ready", config.sheetClass);
         formSheet.dataset.saleOrderState = state;
+
+        // PRECIOS NO AUTORIZADOS (27 sep 2026): marca de agua diagonal "NO
+        // AUTORIZADO" como la de CANCELADO y línea superior roja. La bandera
+        // x_has_low_prices la trae inventory_shopping_cart (campo invisible
+        // en el formulario); sin ese módulo no existe y no se pinta nada.
+        const data = this.model?.root?.data || {};
+        if (state !== "cancel" && data.x_has_low_prices) {
+            formSheet.classList.add("o_sale_order_unauthorized_watermark");
+        }
 
         // Banner limpio, sin botones/pastillas laterales
         const banner = document.createElement("div");

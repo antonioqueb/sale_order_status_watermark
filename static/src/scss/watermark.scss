@@ -114,6 +114,39 @@
         -1px -1px 0 rgba(220, 53, 69, 0.02);
 }
 
+/* Precios no autorizados (27 sep 2026): misma marca diagonal que CANCELADO
+   y línea superior roja. Gana sobre el color del estado (borrador/enviada). */
+.o_form_sheet.o_sale_order_status_ready.o_sale_order_unauthorized_watermark::after {
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        rgba(220, 53, 69, 0) 0%,
+        rgba(220, 53, 69, 0.45) 15%,
+        rgba(220, 53, 69, 1) 50%,
+        rgba(220, 53, 69, 0.45) 85%,
+        rgba(220, 53, 69, 0) 100%
+    );
+}
+
+.o_form_sheet.o_sale_order_unauthorized_watermark::before {
+    content: "NO AUTORIZADO";
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-24deg);
+    font-size: 96px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(220, 53, 69, 0.08);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 0;
+}
+
 /* ==========================================================================
    BANNER
    ========================================================================== */
@@ -249,5 +282,10 @@
     .o_form_sheet.o_sale_order_cancelled_watermark::before {
         font-size: 64px;
         letter-spacing: 0.12em;
+    }
+
+    .o_form_sheet.o_sale_order_unauthorized_watermark::before {
+        font-size: 48px;
+        letter-spacing: 0.1em;
     }
 }
